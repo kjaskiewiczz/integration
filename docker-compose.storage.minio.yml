@@ -29,3 +29,9 @@ services:
         depends_on:
             minio:
                 condition: service_healthy
+
+    mender-api-gateway:
+        networks:
+            mender:
+                aliases:
+                    - s3.docker.mender.io
