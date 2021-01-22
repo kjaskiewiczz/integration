@@ -81,7 +81,7 @@ services:
     mender-deployments:
         command: server --automigrate
         volumes:
-            - ./production/keys-generated/certs/storage-proxy/cert.crt:/etc/ssl/certs/storage-proxy.crt:ro
+            - ./production/keys-generated/certs/api-gateway/cert.crt:/etc/ssl/certs/storage-proxy.crt:ro
         environment:
             STORAGE_BACKEND_CERT: /etc/ssl/certs/storage-proxy.crt
             # access key, the same value as MINIO_ACCESS_KEY
