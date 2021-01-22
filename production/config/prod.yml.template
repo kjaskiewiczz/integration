@@ -71,6 +71,8 @@ services:
         volumes:
             - ./production/keys-generated/certs/api-gateway/cert.crt:/var/www/mendersoftware/cert/cert.crt:ro
             - ./production/keys-generated/certs/api-gateway/private.key:/var/www/mendersoftware/cert/private.key:ro
+            - ./certs/storage-proxy/cert.crt:/certs/s3.docker.mender.io.crt
+            - ./certs/storage-proxy/private.key:/certs/s3.docker.mender.io.key
         logging:
             options:
                 max-file: "10"
@@ -81,7 +83,7 @@ services:
     mender-deployments:
         command: server --automigrate
         volumes:
-            - ./production/keys-generated/certs/storage-proxy/cert.crt:/etc/ssl/certs/storage-proxy.crt:ro
+            - ./production/keys-generated/certs/api-gateway/cert.crt:/etc/ssl/certs/storage-proxy.crt:ro
         environment:
             STORAGE_BACKEND_CERT: /etc/ssl/certs/storage-proxy.crt
             # access key, the same value as MINIO_ACCESS_KEY
